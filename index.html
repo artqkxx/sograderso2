@@ -414,7 +414,7 @@
   </div>
 
   <script>
-    const API_BASE = 'http://localhost:5000/api';
+    const API_BASE = '/api';
     let currentUser = null;
     let authMode = 'login';
 
@@ -1091,11 +1091,59 @@
     function selectDepositAmount(amt) { document.getElementById('customDepositInput').value = amt; }
     
     async function processStarsDeposit() {
+      if (!currentUser) return openAuthModal('login');
+
       const amt = parseFloat(document.getElementById('customDepositInput').value);
-      if (!amt || amt <= 0) return showBanner('Укажите сумму', 'error');
-      showBanner(`Счет на ${amt} Gold создан! Перенаправление...`, 'success');
-      closeDepositModal();
+      if (!Number.isFinite(amt) || amt <= 0) return showBanner('Укажите корректную сумму', 'error');
+      if (!Number.isInteger(amt)) return showBanner('Для оплаты Stars укажите целое количество G', 'error');
+
+      const token = localStorage.getItem('upgrader_token');
+      if (!token) return openAuthModal('login');
+
+      try {
+        const res = await fetch(`${API_BASE}/payment/create-stars-invoice`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ amount: amt })
+        });
+
+        const data = await res.json();
+        if (!data.success) return showBanner(data.message || 'Не удалось создать счет', 'error');
+
+        closeDepositModal();
+        showBanner(`Счет на ${data.starsAmount} ⭐ создан. Открываем Telegram...`, 'success');
+
+        // Telegram invoice URL безопасно открываем в новой вкладке.
+        window.location.href = data.invoiceUrl;
+      } catch (err) {
+        console.error(err);
+        showBanner('Не удалось связаться с сервером', 'error');
+      }
     }
+
+    async function refreshCurrentUser() {
+      const token = localStorage.getItem('upgrader_token');
+      if (!token) return;
+      try {
+        const res = await fetch(`${API_BASE}/auth/me`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.success) {
+          currentUser = data.user;
+          renderHeaderAuth();
+          renderLeftPanel();
+          if (!document.getElementById('tab-profile-content').classList.contains('hidden')) renderProfilePage();
+        }
+      } catch (e) {
+        console.warn('Не удалось обновить баланс');
+      }
+    }
+
+    window.addEventListener('focus', refreshCurrentUser);
 
     function openAuthModal(m) { authMode = m; document.getElementById('authModal').classList.remove('hidden'); }
     function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
