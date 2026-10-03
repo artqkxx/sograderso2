@@ -1,0 +1,101 @@
+{
+  "users": [
+    {
+      "id": 100001,
+      "username": "admin",
+      "password": "$2a$10$e8q4gU7CjY1C6N2Qd8xLGeJqUqI3mC7G1aH8jK9L0M1N2O3P4Q5R6",
+      "balance": 1000,
+      "inventory": [
+        {
+          "id": "inv_init_1",
+          "name": "M4A1 Dragon",
+          "price": 1500,
+          "rarity": "arcane",
+          "image": "/img/m4a1_dragon.png"
+        }
+      ],
+      "upgradesCount": 0,
+      "bestDrop": null
+    },
+    {
+      "id": 926480,
+      "username": "artem",
+      "password": "$2b$10$saUv8EbMg/f.2rCQMqWoZOyyNcfzvZoIXOrk7KJ3LvUWWXRR639eK",
+      "balance": 8500,
+      "inventory": [
+        {
+          "id": "inv_1791031407057_ha35",
+          "name": "Karambit Gold",
+          "price": 12000,
+          "rarity": "nameless",
+          "image": "/img/karambit_gold.png"
+        },
+        {
+          "id": "inv_1791031407871_z4nc",
+          "name": "Karambit Gold",
+          "price": 12000,
+          "rarity": "nameless",
+          "image": "/img/karambit_gold.png"
+        },
+        {
+          "id": "inv_1791031408046_fl6t",
+          "name": "Karambit Gold",
+          "price": 12000,
+          "rarity": "nameless",
+          "image": "/img/karambit_gold.png"
+        }
+      ],
+      "upgradesCount": 28,
+      "bestDrop": {
+        "id": "inv_1791031139796_myg5",
+        "name": "M4A1 Dragon",
+        "price": 1500,
+        "rarity": "arcane",
+        "image": "/img/m4a1_dragon.png"
+      }
+    },
+    {
+      "id": 294952,
+      "username": "azamaha",
+      "password": "$2b$10$BQkAao4RX8kvBUfn6VEg9uzFpMI8ZLJvvXk2VjZJG8rLB2JuAd1ge",
+      "balance": 500,
+      "inventory": [
+        {
+          "id": "inv_1791031359109_1",
+          "name": "G22 Relic",
+          "price": 250,
+          "image": "/img/g22_relic.png"
+        }
+      ],
+      "upgradesCount": 0,
+      "bestDrop": null
+    },
+    {
+      "id": 864156,
+      "username": "azamaha1",
+      "password": "$2b$10$VflDIkWmTwmTSqRoCrzRFOxbUaEGm4SRQ.zIuk36DVe.DK5obZTk.",
+      "balance": 500,
+      "inventory": [],
+      "upgradesCount": 0,
+      "bestDrop": null
+    },
+    {
+      "id": 324348,
+      "username": "фыв1231",
+      "password": "$2b$10$i4MZORDnKj4t7GSPzjX7rO8i.wMf3vJ.pqrBCnPFLMJruxLE4ulZC",
+      "balance": 500,
+      "inventory": [],
+      "upgradesCount": 0,
+      "bestDrop": null
+    },
+    {
+      "id": 709040,
+      "username": "asd1131",
+      "password": "$2b$10$/Xb7k2uHngscFrDfVx59bOMa441NEzEgRGgH/oVOyxRDNUQRXYNnu",
+      "balance": 250,
+      "inventory": [],
+      "upgradesCount": 2,
+      "bestDrop": null
+    }
+  ]
+}
